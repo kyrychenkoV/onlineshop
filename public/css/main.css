@@ -1,0 +1,24 @@
+body{
+    background-color:#d0d2d0;
+}
+footer{
+    background-color: #9B859D;
+    padding:17px 0 18px 0 ;
+    border-top: 1px solid red;
+
+
+}
+.header{
+    background-color: #9B859D;
+}
+.wrapper{
+    min-height: 100%;
+}
+html,body{
+    height: 100%;
+}
+
+
+.product{
+    text-align: center;
+}

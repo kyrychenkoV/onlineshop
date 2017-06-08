@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use App\PostList;
 class DatabaseSeeder extends Seeder
 {
     /**
