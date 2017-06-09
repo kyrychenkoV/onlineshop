@@ -9,13 +9,17 @@
     <div class="wrapper">
         <div class="container">
             <div class="row">
-                <div class="col-lg-2">
-                    <div>Боковая панель</div>
-                    <hr>
-                    <div class="product col-lg-12 col-md-12 col-xs-12">
-                        <a href="#"><p>Первый блок</p></a>
-                        <a href=""><p>Первый блок</p></a>
+                @if(Session::has('flash_message'))
+                    <div class="alert alert-success">
+                        {{ Session::get('flash_message') }}
                     </div>
+                @endif
+                <div class="col-lg-2">
+                    @foreach($lists as $list)
+                        <div class="product col-lg-12 col-md-12 col-xs-12">
+                            <a href="#"><p>{{$list->name}}</p></a>
+                        </div>
+                    @endforeach
 
                 </div>
                 <div class="col-lg-10">
@@ -23,42 +27,20 @@
                     <h1> Категории товаров</h1>
                     <hr>
                     <div class="row">
-                        <div class="product col-lg-2 col-md-3 col-xs-6">
-                            <h1>Первый блок</h1>
-                            <p>Ціна</p>
-                            <p>Відгук</p>
-                        </div>
-                        <div class="product col-lg-2 col-md-3 col-xs-6">
-                            <h1>Первый блок</h1>
-                            <p>Ціна</p>
-                            <p>Відгук</p>
-                        </div>
-                        <div class="product col-lg-2 col-md-3 col-xs-6">
-                            <h1>Первый блок</h1>
-                            <p>Ціна</p>
-                            <p>Відгук</p>
-                        </div>
-                        <div class="product col-lg-2 col-md-3 col-xs-6">
-                            <h1>Первый блок</h1>
-                            <p>Ціна</p>
-                            <p>Відгук</p>
-                        </div>
-                        <div class="product col-lg-2 col-md-3 col-xs-6">
-                            <h1>Первый блок</h1>
-                            <p>Ціна</p>
-                            <p>Відгук</p>
-                        </div>
-                        <div class="product col-lg-2 col-md-3 col-xs-6">
-                            <h1>Первый блок</h1>
-                            <p>Ціна</p>
-                            <p>Відгук</p>
-                        </div>
-                        <div class="product col-lg-2 col-md-3 col-xs-6">
-                            <h1>Первый блок</h1>
-                            <p>Ціна</p>
-                            <p>Відгук</p>
-                        </div>
-                        </div>
+                        @foreach ($posts as $post)
+                            <div class="product col-lg-2 col-md-3 col-xs-6">
+
+                                <p><img class="picture" src="{{asset($post->getPath().'/'.$post->img)}}" style="width:150px;height: 200px"></p>
+                                <p>{{ $post->product_name }}</p>
+                                <p>{{ $post->product_group_id }}</p>
+                                <td>{!!  $post->price !!} грн.</td>
+                                <p>Відгук</p>
+                            </div>
+                        @endforeach
+
+
+
+                    </div>
                     <nav aria-label="Page navigation example ">
                         <ul class="pagination nav-center">
                             <li class="page-item"><a class="page-link" href="#">Previous</a></li>
@@ -68,8 +50,7 @@
                             <li class="page-item"><a class="page-link" href="#">Next</a></li>
                         </ul>
                     </nav>
-
-                    </div>
+                </div>
 
             </div>
 
