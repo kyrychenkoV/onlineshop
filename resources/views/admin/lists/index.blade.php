@@ -1,4 +1,4 @@
-@extends('layouts.index')
+@extends('layouts.admin')
 
 @section('header')
     @include('admin.navPanel')
@@ -24,39 +24,31 @@
             <div class="col-lg-10">
                 <table class="table  table-bordered">
                     <div
-                            class="createPost"><a href="{{ route('admin.create') }}" class="btn btn-success btn-lg">Створити пост</a>
+                            class="createPost"><a href="{{ route('list.create') }}" class="btn btn-success btn-lg">Створити ліст</a>
                     </div>
                     <thead>
                     <tr>
                         <th>Номер</th>
-                        <th>Заголовок</th>
-                        <th>Опис</th>
-                        <th>Категорія</th>
-                        <th>Ціна</th>
-                        <th>Картинка</th>
-                        <th>Подивитись</th>
-                        <th>Зберегти</th>
+                        <th>Категорія товару</th>
+                        <th>Кількість товару</th>
+                        <th>Редагувати</th>
+                        <th>Видалити</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($posts as $post)
+                    @foreach ($lists as $list)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td><h4>{{ $post->product_name }}</h4></td>
-                            <td>{!!  $post->description !!}</td>
-                            <td>{!!  $post->product_group_id !!}</td>
-                            <td>{!!  $post->price !!}</td>
-                            <td >
-                                <img class="picture" src="{{asset($post->getPath().'/'.$post->img)}}" style="width:150px;height:150px">
-                            </td>
+                            <td><h4>{{ $list->name }}</h4></td>
+                            <td>{!!  20 !!}</td>
                             <td>
-                                <a href="{{ route('admin.show', $post->id) }}" class="btn btn-primary">Переглянути</a>
-                                <a href="{{ route('admin.edit', $post->id) }}" class="btn btn-primary">Змінити</a>
+
+                                <a href="{{ route('list.edit', $list->id) }}" class="btn btn-primary">Змінити</a>
                             </td>
                             <td>
                                 {!! Form::open([ 'method' => 'DELETE',
-                                                 'route' => ['admin.destroy', $post->id]]) !!}
-                                {!! Form::submit('Видалити пост', ['class' => 'btn btn-danger']) !!}
+                                                 'route' => ['list.destroy', $list->id]]) !!}
+                                {!! Form::submit('Видалити ліст', ['class' => 'btn btn-danger']) !!}
                                 {!! Form::close() !!}
                             </td>
                         </tr>

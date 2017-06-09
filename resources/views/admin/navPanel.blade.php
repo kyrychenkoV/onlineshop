@@ -18,11 +18,10 @@
                 <a class="navbar-brand" href="#">Панель адміністратора</a>
             </div>
 
-            <!-- Основная часть меню (может содержать ссылки, формы и другие элементы) -->
             <div class="collapse navbar-collapse navbar-right" id="navbar-main">
                 <ul class="nav nav-pills active">
                     <li class="current active"><a href="{{ route('admin.index') }}">Головна</a></li>
-                    <li><a href="{{ url('/price') }}">Лісти</a></li>
+                    <li><a href="{{ route('list.index') }}">Лісти</a></li>
                 </ul>
             </div>
         </div>

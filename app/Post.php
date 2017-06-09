@@ -29,6 +29,7 @@ class Post extends Model
 
     public function validateForm($post)
     {
+
         $validatorPost = Validator::make($post, $this->rules);
         if ($validatorPost->fails()) {
             $this->errorsMessages = $validatorPost->getMessageBag();
@@ -82,5 +83,9 @@ class Post extends Model
             Storage::delete($this->img);
         }
     }
+//    public function scoupePopular($query){
+//
+//        return $query->where('price','>','5');
+//    }
 
 }

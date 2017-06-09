@@ -15,11 +15,11 @@
             <div class="col-lg-2">
                 <div>Категорії товарів</div>
                 <hr>
-                {{--@foreach($postsList as $postList)--}}
-                    {{--<div class="product col-lg-12 col-md-12 col-xs-12">--}}
-                    {{--<a href="#"><p>{{$postList->name}}</p></a>--}}
-                {{--</div>--}}
-                {{--@endforeach--}}
+                @foreach($postsList as $postList)
+                    <div class="product col-lg-12 col-md-12 col-xs-12">
+                    <a href="#"><p>{{$postList->name}}</p></a>
+                </div>
+                @endforeach
             </div>
             <div class="col-lg-10">
                 <table class="table  table-bordered">
