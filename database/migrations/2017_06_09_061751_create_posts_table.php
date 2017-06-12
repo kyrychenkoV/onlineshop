@@ -17,7 +17,7 @@ class CreatePostsTable extends Migration
             $table->increments('id');
             $table->string('product_name');
             $table->string('description');
-            $table->integer('product_group_id');
+            $table->integer('post_list_id');
             $table->string('img');
             $table->float('price');
             $table->timestamps();

@@ -13,13 +13,20 @@
                 </div>
             @endif
             <div class="col-lg-2">
+
                 <div>Категорії товарів</div>
                 <hr>
+                {!! Form::open(array('route' => 'admin.index','method' => 'get')) !!}
+                {!! Form::text('search',null, null,['class'=>'form-control','placeholder'=>'Пошук за заголовком']) !!}
                 @foreach($postsList as $postList)
-                    <div class="product col-lg-12 col-md-12 col-xs-12">
-                    <a href="#"><p>{{$postList->name}}</p></a>
-                </div>
-                @endforeach
+                    <div class="product  col-lg-12 col-md-12 col-xs-12">
+                        {!! Form::label($postList->id, $postList->name, ['class' => 'focus']) !!}
+                        {!! Form::checkbox($postList->id,$postList->name) !!}
+                    </div>
+                 @endforeach
+                {!! Form::submit('Створити ліст', ['class' => 'btn btn-primary']) !!}
+                {!! Form::close() !!}
+
             </div>
             <div class="col-lg-10">
                 <table class="table  table-bordered">
@@ -39,12 +46,13 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <?php $i=1;?>
                         @foreach ($posts as $post)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td><h4>{{ $post->product_name }}</h4></td>
+                                <td>{{ $post->product_name }}</td>
                                 <td>{!!  $post->description !!}</td>
-                                <td>{!!  $post->product_group_id !!}</td>
+                                <td>{!!  $post->getNameList($post->post_list_id) !!}</td>
                                 <td>{!!  $post->price !!}</td>
                                 <td >
                                     <img class="picture" src="{{asset($post->getPath().'/'.$post->img)}}" style="width:150px;height:150px">
@@ -64,7 +72,6 @@
                     </tbody>
                 </table>
             </div>
-
         </div>
     </div>
 

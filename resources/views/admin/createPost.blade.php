@@ -16,7 +16,6 @@
                         </ul>
                     </div>
                 @endif
-{{--                    {{ HTML::ul($errors->all()) }}--}}
                 <h1>Сворити пост</h1>
                 {!! Form::open(array('url' => '/admin','files'=>true)) !!}
                 <div class="form-group">
@@ -29,8 +28,8 @@
 
                     <br/>
 
-                    {!! Form::label('product_group_id', 'Ціна:') !!}
-                    {!! Form::select('product_group_id', [$lists], null, ['placeholder' => 'Оберіть категорію товару...']) !!}
+                    {!! Form::label('post_list_id', 'Ціна:') !!}
+                    {!! Form::select('post_list_id', [$lists], null, ['placeholder' => 'Оберіть категорію товару...']) !!}
                     <br>
                     {!! Form::label('price', 'Ціна:') !!}
                     {!!  Form::number('price', 'value') !!}

@@ -6,23 +6,24 @@ use App\PostList;
 use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 
 
 class AdminController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $postsList = PostList::all();
-        $posts = Post::all();
+        $postsList=PostList::all();
+        $post=new Post();
 
-        return view('admin.index', ['posts' => $posts, 'postsList' => $postsList]);
+      return view('admin.index', ['posts' => $post->searchPosts($request), 'postsList' => $postsList]);
+
     }
 
     public function create()
     {
         $lists = new PostList();
-
         return view('admin.createPost', ['lists' => $lists->getLists()]);
     }
 
@@ -72,7 +73,7 @@ class AdminController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
-        $post->deleteNews();
+        $post->deletePost();
         Session::flash('flash_message', 'Пост успішно видалено!');
         return redirect()->route('admin.index');
     }

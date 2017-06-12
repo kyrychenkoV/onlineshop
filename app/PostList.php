@@ -20,19 +20,13 @@ class PostList extends Model
 
     public function getLists(){
 
-        $lists=$this::orderBy('name','asc')->get();
-        $productName=[];
-        foreach ($lists as $list){
-            array_push($productName,$list->name);
-        }
-       return $productName;
+        $lists=$this::pluck('name','id')->toArray();
+        asort($lists);
+       return $lists;
     }
 
     public function validateForm($list)
     {
-//        dump($list['name']);
-//        $name = htmlspecialchars(stripslashes($list['name']));
-//        dd($name);
         $validatorList = Validator::make($list, $this->rules);
         if ($validatorList->fails()) {
             $this->errorsMessages = $validatorList->getMessageBag();

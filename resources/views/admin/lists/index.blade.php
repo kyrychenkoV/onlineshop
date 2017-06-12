@@ -15,6 +15,9 @@
             <div class="col-lg-2">
                 <div>Лівий сайт бар</div>
                 <hr>
+
+
+
                 {{--@foreach($postsList as $postList)--}}
                     {{--<div class="product col-lg-12 col-md-12 col-xs-12">--}}
                         {{--<a href="#"><p>{{$postList->name}}</p></a>--}}
