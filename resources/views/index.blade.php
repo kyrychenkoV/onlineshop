@@ -14,14 +14,22 @@
                         {{ Session::get('flash_message') }}
                     </div>
                 @endif
-                <div class="col-lg-2">
-                    @foreach($lists as $list)
-                        <div class="product col-lg-12 col-md-12 col-xs-12">
-                            <a href="#"><p>{{$list->name}}</p></a>
-                        </div>
-                    @endforeach
+                    <div class="col-lg-2">
 
-                </div>
+                        <div>Категорії товарів</div>
+                        <hr>
+                        {!! Form::open(array('route' => 'index','method' => 'get')) !!}
+                        {!! Form::text('search',null, null,['class'=>'form-control','placeholder'=>'Пошук за заголовком']) !!}
+                        @foreach($postsList as $postList)
+                            <div class="product  col-lg-12 col-md-12 col-xs-12">
+                                {!! Form::label('list[]', $postList->name, ['class' => 'focus']) !!}
+                                {!! Form::checkbox('list[]',$postList->id) !!}
+                            </div>
+                        @endforeach
+                        {!! Form::submit('Пошук', ['class' => 'btn btn-primary']) !!}
+                        {!! Form::close() !!}
+
+                    </div>
                 <div class="col-lg-10">
                     <div>Главная страница</div>
                     <h1> Категории товаров</h1>
@@ -30,26 +38,13 @@
                         @foreach ($posts as $post)
                             <div class="product col-lg-2 col-md-3 col-xs-6">
 
-                                <p><img class="picture" src="{{asset($post->getPath().'/'.$post->img)}}" style="width:150px;height: 200px"></p>
+                                <a href="/post?id={{$post->id}}"><p><img class="picture" src="{{asset($post->getImage())}}" style="width:150px;height: 200px"></p></a>
                                 <p>{{ $post->product_name }}</p>
                                 <p>{{ $post->product_group_id }}</p>
                                 <td>{!!  $post->price !!} грн.</td>
-                                <p>Відгук</p>
                             </div>
                         @endforeach
-
-
-
                     </div>
-                    <nav aria-label="Page navigation example ">
-                        <ul class="pagination nav-center">
-                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                        </ul>
-                    </nav>
                 </div>
 
             </div>

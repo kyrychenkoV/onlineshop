@@ -12,7 +12,8 @@ class Post extends Model
 {
     protected $fillable = ['product_name', 'description', 'post_list_id', 'price', 'img'];
 
-    private $path = 'app/img';
+    private $path = 'app/img/';
+    private $nameImage='';
     private $errorsMessages;
 
     private $rules = [
@@ -72,9 +73,10 @@ class Post extends Model
     }
 
 
-    public function getPath()
+    public function getImage()
     {
-        return $this->path;
+
+        return $this->path.$this->img;
     }
 
     private function deletePicture()
@@ -95,40 +97,36 @@ class Post extends Model
     public function searchPosts($request){
 
         $search=$request->input('search');
-        $data=$request->all();
-         if(!empty($search)&&count($data)==1){
+        $lists=$request->input('list');
+
+        if(!empty($search)&&empty($lists)){
             $posts=Post::where('product_name', 'like', '%' . $search . '%')->get();
         }
-        else if(!empty($search)&&count($data)>1){
-            $posts=collect();
-
-            foreach ($data as $key =>$value){
-                $post=Post::where('post_list_id',$key)
-                    ->where('product_name', 'like', '%' . $data['search'] . '%')
-                    ->get();
-
-                $posts->push($post->all());
-            }
-            $posts=$posts->collapse();
-
+        else if(!empty($search)&&!empty($lists)){
+               $posts=Post::whereIn('post_list_id',$lists)
+                    ->where('product_name', 'like', '%' . $search . '%')
+                   ->get();
         }
-        else if(count($data)>1){
-            $posts=collect();
-
-            foreach ($data as $key =>$value){
-                $post=Post::where('post_list_id',$key)
+        else if(!empty($lists)){
+              $posts=Post::whereIn('post_list_id',$lists)
                     ->get();
-
-                $posts->push($post->all());
-
-            }
-            $posts=$posts->collapse();
         }
 
         else{
             $posts = Post::all();
         }
         return $posts;
+
+    }
+
+    public function helperSave($request)
+    {
+        $picture_name= $this->saveImage($request);
+
+        $input = $request->all();
+        $this->fill($input);
+        $this->img=$picture_name;
+        $this->save();
 
     }
 

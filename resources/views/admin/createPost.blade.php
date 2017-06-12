@@ -16,6 +16,7 @@
                         </ul>
                     </div>
                 @endif
+
                 <h1>Сворити пост</h1>
                 {!! Form::open(array('url' => '/admin','files'=>true)) !!}
                 <div class="form-group">

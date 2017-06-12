@@ -20,11 +20,11 @@
                 {!! Form::text('search',null, null,['class'=>'form-control','placeholder'=>'Пошук за заголовком']) !!}
                 @foreach($postsList as $postList)
                     <div class="product  col-lg-12 col-md-12 col-xs-12">
-                        {!! Form::label($postList->id, $postList->name, ['class' => 'focus']) !!}
-                        {!! Form::checkbox($postList->id,$postList->name) !!}
+                        {!! Form::label('list[]', $postList->name, ['class' => 'focus']) !!}
+                        {!! Form::checkbox('list[]',$postList->id) !!}
                     </div>
                  @endforeach
-                {!! Form::submit('Створити ліст', ['class' => 'btn btn-primary']) !!}
+                {!! Form::submit('Пошук', ['class' => 'btn btn-primary']) !!}
                 {!! Form::close() !!}
 
             </div>
@@ -55,7 +55,7 @@
                                 <td>{!!  $post->getNameList($post->post_list_id) !!}</td>
                                 <td>{!!  $post->price !!}</td>
                                 <td >
-                                    <img class="picture" src="{{asset($post->getPath().'/'.$post->img)}}" style="width:150px;height:150px">
+                                    <img class="picture" src="{{asset($post->getImage())}}" style="width:150px;height:150px">
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.show', $post->id) }}" class="btn btn-primary">Переглянути</a>

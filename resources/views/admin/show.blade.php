@@ -10,7 +10,7 @@
 
 
                 <div>
-                    <img class="picture" src="{{asset($post->getPath().'/'.$post->img)}}" style="width:150px;height:150px">
+                    <img class="picture" src="{{asset($post->getImage())}}" style="width:150px;height:150px">
                 </div>
                 <div>
                     {{$post->product_name}}

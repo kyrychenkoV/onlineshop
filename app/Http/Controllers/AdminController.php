@@ -16,7 +16,7 @@ class AdminController extends Controller
     {
         $postsList=PostList::all();
         $post=new Post();
-
+           dump($request->all());
       return view('admin.index', ['posts' => $post->searchPosts($request), 'postsList' => $postsList]);
 
     }
@@ -31,7 +31,7 @@ class AdminController extends Controller
     {
         $post = new Post;
         if ($post->validateForm($request->all())) {
-            $this->helperSave($post, $request);
+            $post->helperSave( $request);
 
             Session::flash('flash_message', 'Пост успішно створено!');
 
@@ -60,7 +60,7 @@ class AdminController extends Controller
     {
         $post = Post::find($id);
         if ($post->validateForm($request->all())) {
-            $this->helperSave($post, $request);
+            $post->helperSave( $request);
             Session::flash('flash_message', 'Пост успішно змінено!');
 
             return redirect()->route('admin.index');
@@ -78,15 +78,6 @@ class AdminController extends Controller
         return redirect()->route('admin.index');
     }
 
-    private function helperSave($post, $request)
-    {
-         $picture_name= $post->saveImage($request);
 
-        $input = $request->all();
-        $post->fill($input);
-        $post->img=$picture_name;
-        $post->save();
-
-    }
 
 }

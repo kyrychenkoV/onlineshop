@@ -7,15 +7,19 @@ use App\Post;
 use App\PostList;
 class IndexController extends Controller
 {
-    public function index()
+    public function index(Request $request=null)
     {
-        $posts=Post::all();
-        $lists=PostList::all();
-        return view('index',['posts'=>$posts,'lists'=>$lists]);
+
+        $postsList=PostList::all();
+        $post=new Post();
+
+        return view('index', ['posts' => $post->searchPosts($request), 'postsList' => $postsList]);
     }
 
-    public function show()
+    public function show(Request $request)
     {
-        return view('showPost');
+
+        $post= Post::find($request->id);
+        return view('showPost',['post'=>$post]);
     }
 }
