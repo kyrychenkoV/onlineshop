@@ -40,7 +40,7 @@
 
                                 <a href="/post?id={{$post->id}}"><p><img class="picture" src="{{asset($post->getImage())}}" style="width:150px;height: 200px"></p></a>
                                 <p>{{ $post->product_name }}</p>
-                                <p>{{ $post->product_group_id }}</p>
+                                <p>{{ $post->product_list_id }}</p>
                                 <td>{!!  $post->price !!} грн.</td>
                             </div>
                         @endforeach

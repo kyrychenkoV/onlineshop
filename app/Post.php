@@ -99,23 +99,19 @@ class Post extends Model
         $search=$request->input('search');
         $lists=$request->input('list');
 
-        if(!empty($search)&&empty($lists)){
-            $posts=Post::where('product_name', 'like', '%' . $search . '%')->get();
+        $queryBuilder= DB::table('posts');
+
+        if(!empty($search)){
+
+            $queryBuilder->where('product_name', 'like', '%' . $search . '%');
         }
-        else if(!empty($search)&&!empty($lists)){
-               $posts=Post::whereIn('post_list_id',$lists)
-                    ->where('product_name', 'like', '%' . $search . '%')
-                   ->get();
-        }
-        else if(!empty($lists)){
-              $posts=Post::whereIn('post_list_id',$lists)
-                    ->get();
+        if(!empty($lists))
+        {
+            $queryBuilder->whereIn('post_list_id',$lists);
+
         }
 
-        else{
-            $posts = Post::all();
-        }
-        return $posts;
+        return $queryBuilder->get();
 
     }
 
