@@ -16,7 +16,6 @@
                     </div>
               </div>
 
-
             <div class="collapse navbar-collapse navbar-right" id="navbar-main">
                 <ul class="nav nav-pills active">
                 <li class="current active"><a href="{{ route('index') }}">Головна</a></li>

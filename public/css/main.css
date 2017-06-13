@@ -4,9 +4,6 @@ body{
 footer{
     background-color: #9B859D;
     padding:17px 0 18px 0 ;
-    border-top: 1px solid red;
-
-
 }
 .header{
     background-color: #9B859D;
@@ -28,32 +25,29 @@ html,body{
     padding-left:20px;
 }
 .wrapper-post{
-
-    /*max-width:1000px;*/
-    margin-left: 10%; /* Отступ слева */
-    width: 60%; /* Ширина слоя */
-    /*background:red; !* Цвет фона *!*/
+    margin-left: 10%;
+    width: 60%;
     padding: 10px;
 }
 .image{
     width:250px;
     height:220px;
-    float:left; /* Выравнивание по левому краю */
+    float:left;
     margin: 0px 20px 10px 0;
 }
 .name{
-    font-family: 'Times New Roman', Times, serif; /* Гарнитура текста */
+    font-family: 'Times New Roman', Times, serif;
     font-size: 15pt;
     color:#23527c;
 }
 .title{
-    font-family: 'Times New Roman', Times, serif; /* Гарнитура текста */
+    font-family: 'Times New Roman', Times, serif;
     font-size: 20pt;
     color:#23527c;
     text-align: center;
 }
 .left-title{
-    font-family: 'Times New Roman', Times, serif; /* Гарнитура текста */
+    font-family: 'Times New Roman', Times, serif;
     font-size: 15pt;
     color:#23527c;
 
@@ -65,5 +59,9 @@ a:focus, a:hover {
 }
 .line{
 margin-top:11px;
+}
+.title-group{
+    text-align: center;
+    color:#23527c;
 }
 

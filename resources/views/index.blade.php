@@ -38,7 +38,7 @@
                             @foreach ($posts as $post)
                                 <div class="product col-lg-2 col-md-3 col-xs-6">
                                     <a href="/post?id={{$post->id}}"><p><img class="picture" src="{{asset($postOne->getImage().$post->img)}}" style="width:150px;height: 200px"></p></a>
-                                    <p>{{ $post->product_name }}</p>
+                                    <div class="title-group"><p>{{ $post->product_name }}</p></div>
                                 </div>
                              @endforeach
                          </div>

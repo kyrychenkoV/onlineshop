@@ -14,13 +14,10 @@
                     <img class="image " src="{{asset($post->getImage())}}">
                 </div>
                 <div>
-                    {{$post->product_name}}
+                    <p><span class="name">Категорія:</span>{{$post->product_name}}</p>
                 </div>
                 <div>
-                    {{$post->description}}
-                </div>
-                <div>
-                    {{$post->product_group_id}}
+                    <p><span class="name">Опис:</span>{{$post->description}}</p>
                 </div>
 
             </div>

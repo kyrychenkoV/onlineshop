@@ -11,13 +11,16 @@ use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
+    const POST_CREATE='Пост успішно створено!';
+    const POST_UPDATE='Пост успішно змінено!';
+    const POST_DESTROY='Пост успішно видалено!';
 
     public function index(Request $request)
     {
-        $postsList=PostList::all();
-        $postOne=new Post();
+        $postsList = PostList::all();
+        $postOne = new Post();
 
-      return view('admin.index', ['posts' => $postOne->searchPosts($request),'postOne'=>$postOne, 'postsList' => $postsList]);
+        return view('admin.index', ['posts' => $postOne->searchPosts($request), 'postOne' => $postOne, 'postsList' => $postsList]);
 
     }
 
@@ -31,9 +34,9 @@ class AdminController extends Controller
     {
         $post = new Post;
         if ($post->validateForm($request->all())) {
-            $post->helperSave( $request);
+            $post->helperSave($request);
 
-            Session::flash('flash_message', 'Пост успішно створено!');
+            Session::flash('flash_message', self::POST_CREATE);
 
             return redirect()->route('admin.index');
         } else {
@@ -60,8 +63,8 @@ class AdminController extends Controller
     {
         $post = Post::find($id);
         if ($post->validateForm($request->all())) {
-            $post->helperSave( $request);
-            Session::flash('flash_message', 'Пост успішно змінено!');
+            $post->helperSave($request);
+            Session::flash('flash_message', self::POST_UPDATE);
 
             return redirect()->route('admin.index');
         } else {
@@ -74,10 +77,10 @@ class AdminController extends Controller
     {
         $post = Post::find($id);
         $post->deletePost();
-        Session::flash('flash_message', 'Пост успішно видалено!');
+        Session::flash('flash_message', self::POST_DESTROY);
+
         return redirect()->route('admin.index');
     }
-
 
 
 }

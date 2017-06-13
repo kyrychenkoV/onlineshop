@@ -14,7 +14,6 @@
             @endif
             <div class="col-lg-2 left-site-bar">
 
-                <div>Категорії товарів</div>
                 <hr>
                 {!! Form::open(array('route' => 'admin.index','method' => 'get')) !!}
                 {!! Form::text('search',null,['class'=>'form-control','placeholder'=>'Пошук за заголовком']) !!}
@@ -22,8 +21,9 @@
                 <p class="info">Пошук за категоріями</p>
                 @foreach($postsList as $postList)
                     <div class="product  col-lg-12 col-md-12 col-xs-12 ">
-                        {!! Form::label('list[]', $postList->name, ['class' => 'focus']) !!}
                         {!! Form::checkbox('list[]',$postList->id) !!}
+                        {!! Form::label('list[]', $postList->name, ['class' => 'focus']) !!}
+
                     </div>
                  @endforeach
                 {!! Form::submit('Пошук', ['class' => 'btn btn-primary search-button pull-left']) !!}
@@ -53,7 +53,6 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $post->product_name }}</td>
                                 <td>{!!  $post->description !!}</td>
-{{--                                <td>{!!  $post->name !!}</td>--}}
                                 <td >
                                     <img class="picture" src="{{ asset($postOne->getImage().$post->img) }}" style="width:150px;height:150px">
                                 </td>

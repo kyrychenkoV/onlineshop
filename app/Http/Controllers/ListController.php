@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Session;
 
 class ListController extends Controller
 {
+    const LIST_CREATE='Ліст успішно створено';
+    const LIST_UPDATE='Ліст успішно змінено';
+    const LIST_DESTROY='Ліст успішно видалено';
 
     public function index()
     {
@@ -31,7 +34,7 @@ class ListController extends Controller
             $input = $request->all();
             $list->fill($input);
             $list->save();
-            Session::flash('flash_message', 'Ліст успішно створено!');
+            Session::flash('flash_message', self::LIST_CREATE);
             return redirect()->route('list.index');
         } else {
             return redirect()->route('list.create')->withInput()->withErrors($list->getErrorsMessages());
@@ -61,7 +64,7 @@ class ListController extends Controller
             $input = $request->all();
             $list->fill($input);
             $list->save();
-            Session::flash('flash_message', 'Ліст успішно змінено!');
+            Session::flash('flash_message', self::LIST_UPDATE);
 
             return redirect()->route('list.index');
         } else {
@@ -76,7 +79,7 @@ class ListController extends Controller
         $list = PostList::find($id);
         $list->delete();
 
-        Session::flash('flash_message', 'Ліст успішно видалено!');
+        Session::flash('flash_message',self::LIST_DESTROY);
 
         return redirect()->route('list.index');
     }
