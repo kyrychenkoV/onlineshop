@@ -31,15 +31,12 @@
 
                     {!! Form::label('post_list_id', 'Ціна:') !!}
                     {!! Form::select('post_list_id', [$lists], null, ['placeholder' => 'Оберіть категорію товару...']) !!}
-                    <br>
-                    {!! Form::label('price', 'Ціна:') !!}
-                    {!!  Form::number('price', 'value') !!}
 
                     <br>
                     {!! Form::label('img', 'Add image:') !!}
                     {!!Form::file('img',['class' => 'btn'])!!}
                 </div>
-                {!! Form::submit('Create news', ['class' => 'btn btn-primary']) !!}
+                {!! Form::submit('Створити пост', ['class' => 'btn btn-primary']) !!}
                 {!! Form::close() !!}
 
             </div>

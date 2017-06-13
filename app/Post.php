@@ -11,16 +11,15 @@ use Illuminate\Support\Facades\DB;
 class Post extends Model
 {
     protected $fillable = ['product_name', 'description', 'post_list_id', 'price', 'img'];
-
+    const PATH ='app/img/';
     private $path = 'app/img/';
     private $nameImage='';
     private $errorsMessages;
 
     private $rules = [
         'product_name'     => 'required|max:100',
-        'description'      => 'required|max:200',
+        'description'      => 'required|max:1000',
         'post_list_id' => 'required',
-        'price'            => 'required',
         'img'              => 'required|image|max:10240',
     ];
 
@@ -73,7 +72,7 @@ class Post extends Model
     }
 
 
-    public function getImage()
+    public  function getImage()
     {
 
         return $this->path.$this->img;
@@ -87,13 +86,7 @@ class Post extends Model
         }
     }
 
-    public function getNameList($id){
 
-        $name=DB::table('lists')->select('name')->where('id',$id)->get();
-        $name=$name->first()->name;
-
-        return $name;
-    }
     public function searchPosts($request){
 
         $search=$request->input('search');
@@ -105,14 +98,13 @@ class Post extends Model
 
             $queryBuilder->where('product_name', 'like', '%' . $search . '%');
         }
-        if(!empty($lists))
-        {
-            $queryBuilder->whereIn('post_list_id',$lists);
-
+        if(!empty($lists)) {
+            $queryBuilder->whereIn('post_list_id', $lists);
         }
 
-        return $queryBuilder->get();
 
+
+       return $queryBuilder->get();
     }
 
     public function helperSave($request)
@@ -124,6 +116,14 @@ class Post extends Model
         $this->img=$picture_name;
         $this->save();
 
+    }
+
+    public function queryJoinTable(){
+
+       return DB::table('lists')
+            ->leftJoin('posts', 'lists.id', '=', 'post_list_id')
+            ->whereIn('post_list_id',[1,2])
+            ->get();
     }
 
 }

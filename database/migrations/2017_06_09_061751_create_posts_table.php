@@ -16,10 +16,9 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
             $table->string('product_name');
-            $table->string('description');
+            $table->text('description');
             $table->integer('post_list_id');
             $table->string('img');
-            $table->float('price');
             $table->timestamps();
         });
     }

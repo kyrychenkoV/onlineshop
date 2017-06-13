@@ -16,17 +16,16 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
 
 
 </head>
 <body class="homepage">
-{{--<div id="page-wrapper">--}}
+
 @yield('header')
 
 @yield('content')
 
-{{--@yield('footer')--}}
-{{--</div>--}}
 
 </body>
 

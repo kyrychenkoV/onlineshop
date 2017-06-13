@@ -9,17 +9,17 @@ class IndexController extends Controller
 {
     public function index(Request $request=null)
     {
-
         $postsList=PostList::all();
-        $post=new Post();
-
-        return view('index', ['posts' => $post->searchPosts($request), 'postsList' => $postsList]);
+        $postOne=new Post();
+//        dd($postOne->searchPosts($request));
+        return view('index', ['posts' => $postOne->searchPosts($request), 'postOne'=> $postOne,'postsList' => $postsList]);
     }
 
     public function show(Request $request)
     {
 
         $post= Post::find($request->id);
+
         return view('showPost',['post'=>$post]);
     }
 }

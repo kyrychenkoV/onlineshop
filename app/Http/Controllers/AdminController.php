@@ -15,9 +15,9 @@ class AdminController extends Controller
     public function index(Request $request)
     {
         $postsList=PostList::all();
-        $post=new Post();
-           dump($request->all());
-      return view('admin.index', ['posts' => $post->searchPosts($request), 'postsList' => $postsList]);
+        $postOne=new Post();
+
+      return view('admin.index', ['posts' => $postOne->searchPosts($request),'postOne'=>$postOne, 'postsList' => $postsList]);
 
     }
 

@@ -16,36 +16,33 @@
                 @endif
                     <div class="col-lg-2">
 
-                        <div>Категорії товарів</div>
+                        <div><span class="left-title">Категорії товарів</span></div>
                         <hr>
                         {!! Form::open(array('route' => 'index','method' => 'get')) !!}
-                        {!! Form::text('search',null, null,['class'=>'form-control','placeholder'=>'Пошук за заголовком']) !!}
+                        {!! Form::text('search',null,['class'=>'form-control','placeholder'=>'Пошук за заголовком']) !!}
                         @foreach($postsList as $postList)
                             <div class="product  col-lg-12 col-md-12 col-xs-12">
-                                {!! Form::label('list[]', $postList->name, ['class' => 'focus']) !!}
                                 {!! Form::checkbox('list[]',$postList->id) !!}
+                                {!! Form::label('list[]', $postList->name, ['class' => 'focus']) !!}
+
                             </div>
                         @endforeach
                         {!! Form::submit('Пошук', ['class' => 'btn btn-primary']) !!}
                         {!! Form::close() !!}
 
                     </div>
-                <div class="col-lg-10">
-                    <div>Главная страница</div>
-                    <h1> Категории товаров</h1>
-                    <hr>
-                    <div class="row">
-                        @foreach ($posts as $post)
-                            <div class="product col-lg-2 col-md-3 col-xs-6">
-
-                                <a href="/post?id={{$post->id}}"><p><img class="picture" src="{{asset($post->getImage())}}" style="width:150px;height: 200px"></p></a>
-                                <p>{{ $post->product_name }}</p>
-                                <p>{{ $post->product_list_id }}</p>
-                                <td>{!!  $post->price !!} грн.</td>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
+                    <div class="col-lg-10">
+                        <div class="title"> <span>Перелік товарів</span></div>
+                    <hr class="line">
+                        <div class="row">
+                            @foreach ($posts as $post)
+                                <div class="product col-lg-2 col-md-3 col-xs-6">
+                                    <a href="/post?id={{$post->id}}"><p><img class="picture" src="{{asset($postOne->getImage().$post->img)}}" style="width:150px;height: 200px"></p></a>
+                                    <p>{{ $post->product_name }}</p>
+                                </div>
+                             @endforeach
+                         </div>
+                     </div>
 
             </div>
 

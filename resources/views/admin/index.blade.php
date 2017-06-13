@@ -12,53 +12,55 @@
                     {{ Session::get('flash_message') }}
                 </div>
             @endif
-            <div class="col-lg-2">
+            <div class="col-lg-2 left-site-bar">
 
                 <div>Категорії товарів</div>
                 <hr>
                 {!! Form::open(array('route' => 'admin.index','method' => 'get')) !!}
-                {!! Form::text('search',null, null,['class'=>'form-control','placeholder'=>'Пошук за заголовком']) !!}
+                {!! Form::text('search',null,['class'=>'form-control','placeholder'=>'Пошук за заголовком']) !!}
+                <hr>
+                <p class="info">Пошук за категоріями</p>
                 @foreach($postsList as $postList)
-                    <div class="product  col-lg-12 col-md-12 col-xs-12">
+                    <div class="product  col-lg-12 col-md-12 col-xs-12 ">
                         {!! Form::label('list[]', $postList->name, ['class' => 'focus']) !!}
                         {!! Form::checkbox('list[]',$postList->id) !!}
                     </div>
                  @endforeach
-                {!! Form::submit('Пошук', ['class' => 'btn btn-primary']) !!}
+                {!! Form::submit('Пошук', ['class' => 'btn btn-primary search-button pull-left']) !!}
                 {!! Form::close() !!}
 
             </div>
             <div class="col-lg-10">
                 <table class="table  table-bordered">
                     <div
-                        class="createPost"><a href="{{ route('admin.create') }}" class="btn btn-success btn-lg">Створити пост</a>
+                        class="createPost"><a href="{{ route('admin.create') }}" class="btn btn-success btn-lg pull-right">Створити пост</a>
                     </div>
                     <thead>
                     <tr>
                         <th>Номер</th>
                         <th>Заголовок</th>
                         <th>Опис</th>
-                        <th>Категорія</th>
-                        <th>Ціна</th>
                         <th>Картинка</th>
-                        <th>Подивитись</th>
+                        <th>Переглянути</th>
+                        <th>Змінити</th>
                         <th>Зберегти</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <?php $i=1;?>
+                    <?php  ?>
                         @foreach ($posts as $post)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $post->product_name }}</td>
                                 <td>{!!  $post->description !!}</td>
-                                <td>{!!  $post->getNameList($post->post_list_id) !!}</td>
-                                <td>{!!  $post->price !!}</td>
+{{--                                <td>{!!  $post->name !!}</td>--}}
                                 <td >
-                                    <img class="picture" src="{{asset($post->getImage())}}" style="width:150px;height:150px">
+                                    <img class="picture" src="{{ asset($postOne->getImage().$post->img) }}" style="width:150px;height:150px">
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.show', $post->id) }}" class="btn btn-primary">Переглянути</a>
+                                </td>
+                                <td>
                                     <a href="{{ route('admin.edit', $post->id) }}" class="btn btn-primary">Змінити</a>
                                 </td>
                                 <td>

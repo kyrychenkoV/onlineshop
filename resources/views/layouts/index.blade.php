@@ -20,13 +20,13 @@
 
     </head>
     <body class="homepage">
-        {{--<div id="page-wrapper">--}}
+
             @yield('header')
 
             @yield('content')
 
             @yield('footer')
-        {{--</div>--}}
+
 
     </body>
 

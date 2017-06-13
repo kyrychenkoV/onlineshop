@@ -8,12 +8,10 @@
 @section('content')
     <div class="wrapper">
         <div class="container">
-            <div class="col-lg-2">
 
-            </div>
-            <div class="col-lg-10">
-                <div>
-                    <img class="picture" src="{{asset($post->getImage())}}" style="width:150px;height:150px">
+            <div class="col-lg-10  wrapper-post ">
+                <div class="image">
+                    <img class="image " src="{{asset($post->getImage())}}">
                 </div>
                 <div>
                     {{$post->product_name}}
@@ -24,9 +22,7 @@
                 <div>
                     {{$post->product_group_id}}
                 </div>
-                <div>
-                    {{$post->price}} грн
-                </div>
+
             </div>
         </div>
     </div>
