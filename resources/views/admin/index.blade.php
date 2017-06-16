@@ -15,13 +15,13 @@
             <div class="col-lg-2 left-site-bar">
 
                 <hr>
-                {!! Form::open(array('route' => 'admin.index','method' => 'get')) !!}
+                {!! Form::open(array('route' => 'admin.index','method' => 'get','onchange'=>'submitForm()')) !!}
                 {!! Form::text('search',null,['class'=>'form-control','placeholder'=>'Пошук за заголовком']) !!}
                 <hr>
                 <p class="info">Пошук за категоріями</p>
                 @foreach($postsList as $postList)
                     <div class="product  col-lg-12 col-md-12 col-xs-12 ">
-                        {!! Form::checkbox('list[]',$postList->id) !!}
+                        {!! Form::checkbox('list[]',$postList->id,['onchange'=>"alert(this.value)"]) !!}
                         {!! Form::label('list[]', $postList->name, ['class' => 'focus']) !!}
 
                     </div>
@@ -31,6 +31,7 @@
 
             </div>
             <div class="col-lg-10">
+                        <?php echo $data ?>
                 <table class="table  table-bordered">
                     <div
                         class="createPost"><a href="{{ route('admin.create') }}" class="btn btn-success btn-lg pull-right">Створити пост</a>
@@ -75,5 +76,11 @@
             </div>
         </div>
     </div>
+    <script>
+            function submitForm() {
+                document.querySelectorAll("input[type=submit]")[0].click();
+            }
+
+    </script>
 
 @endsection

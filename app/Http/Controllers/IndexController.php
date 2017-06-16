@@ -11,6 +11,7 @@ class IndexController extends Controller
     public function index(Request $request = null)
     {
         $postsList = PostList::all();
+        dd(POST::PATH);
         $postOne = new Post();
 
         return view('index', ['posts' => $postOne->searchPosts($request), 'postOne' => $postOne, 'postsList' => $postsList]);

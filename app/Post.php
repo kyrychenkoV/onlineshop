@@ -102,7 +102,7 @@ class Post extends Model
             $queryBuilder->whereIn('post_list_id', $lists);
         }
 
-
+        $queryBuilder->select();
 
        return $queryBuilder->get();
     }
